@@ -37,16 +37,21 @@ struct BottleView: View {
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {
-                LazyVGrid(columns: gridLayout, alignment: .center) {
-                    ForEach(bottle.pinnedPrograms, id: \.id) { pinnedProgram in
-                        PinView(
-                            bottle: bottle, program: pinnedProgram.program, pin: pinnedProgram.pin, path: $path
-                        )
+                VStack {
+                    LazyVGrid(columns: gridLayout, alignment: .center) {
+                        ForEach(bottle.pinnedPrograms, id: \.id) { pinnedProgram in
+                            PinView(
+                                bottle: bottle, program: pinnedProgram.program, pin: pinnedProgram.pin, path: $path
+                            )
+                        }
+                        PinAddView(bottle: bottle)
                     }
-                    PinAddView(bottle: bottle)
                 }
-                .whiskyLiquidGlassContainer(spacing: 14)
                 .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.regularMaterial)
+                }
                 Form {
                     NavigationLink(value: BottleStage.programs) {
                         Label("tab.programs", systemImage: "list.bullet")
@@ -60,7 +65,10 @@ struct BottleView: View {
                 }
                 .formStyle(.grouped)
                 .scrollDisabled(true)
-                .whiskyLiquidGlass(.detail)
+                .background {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(.regularMaterial)
+                }
             }
             .bottomBar {
                 HStack {

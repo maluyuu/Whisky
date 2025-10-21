@@ -44,7 +44,10 @@ struct ContentView: View {
         } detail: {
             detail
         }
-        .whiskyLiquidGlassContainer()
+        .background {
+            RoundedRectangle(cornerRadius: 0)
+                .fill(.regularMaterial)
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -159,7 +162,10 @@ struct ContentView: View {
             .searchable(text: $bottleFilter, placement: .sidebar)
 
             sidebarList
-                .whiskyLiquidGlass(.sidebar, namespace: glassNamespace, id: "sidebar-glass")
+                .background {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.thinMaterial)
+                }
                 .onChange(of: newlyCreatedBottleURL) { _, url in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         selected = url
@@ -179,7 +185,10 @@ struct ContentView: View {
                     .disabled(bottle.inFlight)
                     .id(bottle.url)
                 bottleView
-                    .whiskyLiquidGlass(.detail, namespace: glassNamespace, id: bottle.url)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(.regularMaterial)
+                    }
             }
         } else {
             if (bottleVM.bottles.isEmpty || bottleVM.countActive() == 0) && bottlesLoaded {
@@ -199,7 +208,13 @@ struct ContentView: View {
                 }
                 emptyState
                     .padding()
-                    .whiskyLiquidGlass(.detail, namespace: glassNamespace, id: "empty-detail", interactive: true)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(.regularMaterial)
+                    }
+                    .onHover { hovering in
+                        // Add hover effect for interactivity
+                    }
             }
         }
     }
