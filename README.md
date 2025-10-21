@@ -1,68 +1,67 @@
 <div align="center">
 
   # Whisky 🥃 
-  *Wine but a bit stronger*
+  *ワインより少しだけ強いお酒*
   
   ![](https://img.shields.io/github/actions/workflow/status/IsaacMarovitz/Whisky/SwiftLint.yml?style=for-the-badge)
   [![](https://img.shields.io/discord/1115955071549702235?style=for-the-badge)](https://discord.gg/CsqAfs9CnM)
 </div>
 
-## Maintenance Notice
+## メンテナンス通知
 
-[Whisky is no longer actively maintained](https://docs.getwhisky.app/maintenance-notice). Apps and games may break at any time.
+[Whiskyは現在、積極的にメンテナンスされていません](https://docs.getwhisky.app/maintenance-notice)。アプリやゲームはいつでも動作しなくなる可能性があります。
 
 <img width="650" alt="Config" src="https://github.com/Whisky-App/Whisky/assets/42140194/d0a405e8-76ee-48f0-92b5-165d184a576b">
 
-Familiar UI that integrates seamlessly with macOS
+macOSにシームレスに統合される、おなじみのUI
 
 <div align="right">
   <img width="650" alt="New Bottle" src="https://github.com/Whisky-App/Whisky/assets/42140194/ed1a0d69-d8fb-442b-9330-6816ba8981ba">
 
-  One-click bottle creation and management
+  ワンクリックでのボトル作成と管理
 </div>
 
 <img width="650" alt="debug" src="https://user-images.githubusercontent.com/42140194/229176642-57b80801-d29b-4123-b1c2-f3b31408ffc6.png">
 
-Debug and profile with ease
+簡単にデバッグとプロファイリング
 
 ---
 
-Whisky provides a clean and easy to use graphical wrapper for Wine built in native SwiftUI. You can make and manage bottles, install and run Windows apps and games, and unlock the full potential of your Mac with no technical knowledge required. Whisky is built on top of CrossOver 22.1.1, and Apple's own `Game Porting Toolkit`.
+Whiskyは、ネイティブSwiftUIで構築された、Wine用のクリーンで使いやすいグラフィカルラッパーを提供します。ボトルを作成・管理し、Windowsアプリやゲームをインストール・実行し、技術的な知識なしでMacの可能性を最大限に引き出すことができます。WhiskyはCrossOver 22.1.1とApple独自の`Game Porting Toolkit`を基盤としています。
 
-Translated on [Crowdin](https://crowdin.com/project/whisky).
+[Crowdin](https://crowdin.com/project/whisky)で翻訳されました。
 
 ---
 
-## System Requirements
-- CPU: Apple Silicon (M-series chips)
-- OS: macOS Sonoma 14.0 or later
+## システム要件
+- CPU: Apple Silicon (Mシリーズチップ)
+- OS: macOS Sonoma 14.0以降
 
 ## Homebrew
 
-Whisky is on homebrew! Install with 
-`brew install --cask whisky`.
+WhiskyはHomebrewで利用可能です！ `brew install --cask whisky`でインストールしてください。
 
-## My game isn't working!
+## ゲームが動作しません！
 
-Some games need special steps to get working. Check out the [wiki](https://github.com/IsaacMarovitz/Whisky/wiki/Game-Support).
+一部のゲームは、動作させるために特別な手順が必要です。[wiki](https://github.com/IsaacMarovitz/Whisky/wiki/Game-Support)をご確認ください。
 
 ---
 
-## Credits & Acknowledgments
+## クレジットと謝辞
 
-Whisky is possible thanks to the magic of several projects:
+Whiskyは、以下のいくつかのプロジェクトの魔法のおかげで実現しました。
 
-- [msync](https://github.com/marzent/wine-msync) by marzent
-- [DXVK-macOS](https://github.com/Gcenx/DXVK-macOS) by Gcenx and doitsujin
-- [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by KhronosGroup
-- [Sparkle](https://github.com/sparkle-project/Sparkle) by sparkle-project
-- [SemanticVersion](https://github.com/SwiftPackageIndex/SemanticVersion) by SwiftPackageIndex
-- [swift-argument-parser](https://github.com/apple/swift-argument-parser) by Apple
-- [SwiftTextTable](https://github.com/scottrhoyt/SwiftyTextTable) by scottrhoyt
-- [CrossOver 22.1.1](https://www.codeweavers.com/crossover) by CodeWeavers and WineHQ
-- D3DMetal by Apple
+- [msync](https://github.com/marzent/wine-msync) (marzentによる)
+- [DXVK-macOS](https://github.com/Gcenx/DXVK-macOS) (Gcenxおよびdoitsujinによる)
+- [MoltenVK](https://github.com/KhronosGroup/MoltenVK) (KhronosGroupによる)
+- [Sparkle](https://github.com/sparkle-project/Sparkle) (sparkle-projectによる)
+- [SemanticVersion](https://github.com/SwiftPackageIndex/SemanticVersion) (SwiftPackageIndexによる)
+- [swift-argument-parser](https://github.com/apple/swift-argument-parser) (Appleによる)
+- [SwiftTextTable](https://github.com/scottrhoyt/SwiftyTextTable) (scottrhoytによる)
+- [CrossOver 22.1.1](https://www.codeweavers.com/crossover) (CodeWeaversおよびWineHQによる)
+- D3DMetal (Appleによる)
 
-Special thanks to Gcenx, ohaiibuzzle, and Nat Brown for their support and contributions!
+Gcenx、ohaiibuzzle、およびNat Brownのサポートと貢献に感謝します！
 
 ---
 
@@ -75,7 +74,7 @@ Special thanks to Gcenx, ohaiibuzzle, and Nat Brown for their support and contri
         </picture>
     </td>
     <td>
-        Whisky doesn't exist without CrossOver. Support the work of CodeWeavers using our <a href="https://www.codeweavers.com/store?ad=1010">affiliate link</a>.
+        WhiskyはCrossOverなしには存在しません。当社の<a href="https://www.codeweavers.com/store?ad=1010">アフィリエイトリンク</a>を使用して、CodeWeaversの活動をサポートしてください。
     </td>
   </tr>
 </table>
