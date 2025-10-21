@@ -29,7 +29,7 @@ extension View {
     func whiskyLiquidGlass(_ style: LiquidGlassStyle, interactive: Bool = false) -> some View {
         self.modifier(LiquidGlassModifier(style: style, interactive: interactive))
     }
-    
+
     /// Creates a Liquid Glass container effect with spacing control
     /// - Parameter spacing: The spacing between elements that controls when glass effects merge
     /// - Returns: A view with the applied glass container effect
@@ -46,7 +46,7 @@ enum LiquidGlassStyle {
     case pill
     case detail
     case custom(cornerRadius: CGFloat)
-    
+
     var shape: AnyShape {
         switch self {
         case .card:
@@ -68,10 +68,10 @@ enum LiquidGlassStyle {
 struct LiquidGlassModifier: ViewModifier {
     let style: LiquidGlassStyle
     let interactive: Bool
-    
+
     @State private var isHovered = false
     @State private var isPressed = false
-    
+
     func body(content: Content) -> some View {
         content
             .background {
@@ -107,7 +107,7 @@ struct LiquidGlassModifier: ViewModifier {
 
 struct LiquidGlassContainerModifier: ViewModifier {
     let spacing: CGFloat
-    
+
     func body(content: Content) -> some View {
         content
             .background {
@@ -124,7 +124,7 @@ struct LiquidGlassContainerModifier: ViewModifier {
 struct VisualEffectView: NSViewRepresentable {
     let material: NSVisualEffectView.Material
     let blendingMode: NSVisualEffectView.BlendingMode
-    
+
     func makeNSView(context: Context) -> NSVisualEffectView {
         let visualEffectView = NSVisualEffectView()
         visualEffectView.material = material
@@ -132,7 +132,7 @@ struct VisualEffectView: NSViewRepresentable {
         visualEffectView.state = .active
         return visualEffectView
     }
-    
+
     func updateNSView(_ visualEffectView: NSVisualEffectView, context: Context) {
         visualEffectView.material = material
         visualEffectView.blendingMode = blendingMode
@@ -154,6 +154,7 @@ extension View {
         )
     }
 }
+
 
 // MARK: - AnyShape Helper
 

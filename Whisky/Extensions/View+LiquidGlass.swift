@@ -82,7 +82,10 @@ extension View {
                 glass = glass.interactive()
             }
             let tint = customTint ?? role.defaultTint
-            var view = self.glassEffect(glass, in: RoundedRectangle(cornerRadius: role.cornerRadius, style: .continuous))
+            var view = self.glassEffect(
+                glass,
+                in: RoundedRectangle(cornerRadius: role.cornerRadius, style: .continuous)
+            )
             if let tint {
                 view = view.tint(tint)
             }

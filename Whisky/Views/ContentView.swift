@@ -212,7 +212,7 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(.regularMaterial)
                     }
-                    .onHover { hovering in
+                    .onHover { _ in
                         // Add hover effect for interactivity
                     }
             }
