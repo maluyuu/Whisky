@@ -1,25 +1,25 @@
-# How to contribute
+# 貢献方法
 
-Thanks for your interest! First, make a fork of Whisky, make a new branch for your changes, and get coding!
+ご興味をお持ちいただきありがとうございます！まず、Whiskyをフォークし、変更用の新しいブランチを作成して、コーディングを開始してください。
 
-# Build environment
+# ビルド環境
 
-Whisky is built using Xcode 15 on macOS Sonoma. All external dependencies are handled through the Swift Package Manager.
+WhiskyはmacOS Sonoma上のXcode 15を使用してビルドされます。すべての外部依存関係はSwift Package Managerを通じて処理されます。
 
-# Code style
+# コードスタイル
 
-Every Whisky commit is automatically linted using SwiftLint. You can run these checks locally simply by building in Xcode, violations will appear as errors or warnings. For your pull request to be merged, you must meet all the requirements outlined by SwiftLint and have no violations.
+WhiskyのすべてのコミットはSwiftLintを使用して自動的にリンティングされます。Xcodeでビルドするだけでこれらのチェックをローカルで実行でき、違反はエラーまたは警告として表示されます。プルリクエストがマージされるためには、SwiftLintによって定められたすべての要件を満たし、違反がないことが必要です。
 
-Generally, it is not advised to disable a SwiftLint rule, but there are certain situations where it is necessary. Please use your discretion when disabling rules temporarily.
+一般的に、SwiftLintのルールを無効にすることは推奨されませんが、必要となる特定の状況もあります。一時的にルールを無効にする際は、ご自身の判断で行ってください。
 
-SwiftLint does not fully check indentation, but we ask that you indent with 4-width spaces. This can be automatically configured in Xcode's settings.
+SwiftLintはインデントを完全にチェックしませんが、4幅のスペースでインデントするようお願いしています。これはXcodeの設定で自動的に構成できます。
 
-All added strings must be properly localised and added to the EN strings file. Do not add keys for other languages or translate within your PR. All translations should be handled on [Crowdin](https://crowdin.com/project/whisky).
+追加されるすべての文字列は適切にローカライズされ、EN文字列ファイルに追加する必要があります。他の言語のキーを追加したり、PR内で翻訳したりしないでください。すべての翻訳は[Crowdin](https://crowdin.com/project/whisky)で処理されるべきです。
 
-# Making your PR
+# PRの作成
 
-Please provide a detailed description of your changes in your PR. If your commits contain UI changes, we ask that you provide screenshots.
+プルリクエストには、変更内容の詳細な説明を記載してください。コミットにUIの変更が含まれる場合は、スクリーンショットの提供をお願いします。
 
-# Review
+# レビュー
 
-Once your pull request passes CI SwiftLint checks and builds, it will be ready for review. You may receive feedback on code that should changed. Once you have received an approval, your code will be merged!
+プルリクエストがCIのSwiftLintチェックとビルドに合格すると、レビューの準備が整います。変更すべきコードについてフィードバックを受け取る場合があります。承認が得られたら、コードはマージされます！
