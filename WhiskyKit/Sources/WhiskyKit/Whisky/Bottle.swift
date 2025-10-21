@@ -78,12 +78,14 @@ public final class Bottle: ObservableObject, Equatable, Hashable, Identifiable, 
 
     /// Encode and save the bottle settings
     private func saveSettings() {
-        do {
-            try settings.encode(to: self.metadataURL)
-        } catch {
-            Logger.wineKit.error(
-                "Failed to encode settings for bottle `\(self.metadataURL.path(percentEncoded: false))`: \(error)"
-            )
+        DispatchQueue.main.async {
+            do {
+                try self.settings.encode(to: self.metadataURL)
+            } catch {
+                Logger.wineKit.error(
+                    "Failed to encode settings for bottle `\(self.metadataURL.path(percentEncoded: false))`: \(error)"
+                )
+            }
         }
     }
 

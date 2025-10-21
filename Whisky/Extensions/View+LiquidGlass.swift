@@ -101,9 +101,12 @@ extension View {
     @ViewBuilder
     func whiskyLiquidGlassContainer(spacing: CGFloat = 18) -> some View {
         if #available(macOS 15, *) {
-            GlassEffectContainer(spacing: spacing) {
-                self
-            }
+            self
+                .padding(spacing)
+                .background {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.ultraThinMaterial)
+                }
         } else {
             self
         }

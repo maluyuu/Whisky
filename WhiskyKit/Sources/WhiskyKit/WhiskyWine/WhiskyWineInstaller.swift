@@ -67,25 +67,38 @@ public class WhiskyWineInstaller {
         var remoteVersion: SemanticVersion?
 
         if let remoteUrl = URL(string: versionPlistURL) {
-            remoteVersion = await withCheckedContinuation { continuation in
-                URLSession(configuration: .ephemeral).dataTask(with: URLRequest(url: remoteUrl)) { data, _, error in
-                    do {
-                        if error == nil, let data = data {
-                            let decoder = PropertyListDecoder()
-                            let remoteInfo = try decoder.decode(WhiskyWineVersion.self, from: data)
-                            let remoteVersion = remoteInfo.version
+            var config = URLSessionConfiguration.ephemeral
+            config.timeoutIntervalForRequest = 10
+            config.timeoutIntervalForResource = 20
+            config.waitsForConnectivity = false
 
-                            continuation.resume(returning: remoteVersion)
+            remoteVersion = await withCheckedContinuation { continuation in
+                URLSession(configuration: config).dataTask(with: URLRequest(url: remoteUrl)) { data, response, error in
+                    do {
+                        if let error = error {
+                            print("Network error checking WhiskyWine version: \(error)")
+                            continuation.resume(returning: nil)
                             return
                         }
-                        if let error = error {
-                            print(error)
-                        }
-                    } catch {
-                        print(error)
-                    }
 
-                    continuation.resume(returning: nil)
+                        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                            print("HTTP error: \(httpResponse.statusCode)")
+                            continuation.resume(returning: nil)
+                            return
+                        }
+
+                        if let data = data {
+                            let decoder = PropertyListDecoder()
+                            let remoteInfo = try decoder.decode(WhiskyWineVersion.self, from: data)
+                            continuation.resume(returning: remoteInfo.version)
+                            return
+                        }
+
+                        continuation.resume(returning: nil)
+                    } catch {
+                        print("Failed to decode WhiskyWine version: \(error)")
+                        continuation.resume(returning: nil)
+                    }
                 }.resume()
             }
         }
@@ -104,6 +117,10 @@ public class WhiskyWineInstaller {
             let versionPlist = libraryFolder
                 .appending(path: "WhiskyWineVersion")
                 .appendingPathExtension("plist")
+
+            guard FileManager.default.fileExists(atPath: versionPlist.path(percentEncoded: false)) else {
+                return nil
+            }
 
             let decoder = PropertyListDecoder()
             let data = try Data(contentsOf: versionPlist)
