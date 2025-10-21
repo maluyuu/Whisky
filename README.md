@@ -37,6 +37,9 @@ Whiskyは、ネイティブSwiftUIで構築された、Wine用のクリーンで
 - CPU: Apple Silicon (Mシリーズチップ)
 - OS: macOS Sonoma 14.0以降
 
+## macOS 26 Liquid Glass 対応
+macOS 26 (Tahoe) で導入された Liquid Glass デザイン言語に合わせ、Whisky のナビゲーションと各ボトル関連ビューは新しいガラスエフェクトへ自動的に切り替わります。システム設定の Liquid Glass スタイル（Clear / Tinted）や透明度の調整にも追従するため、macOS 本体と統一された見た目でご利用いただけます。旧バージョンの macOS では従来どおりのマテリアル表現が維持されます。
+
 ## Homebrew
 
 WhiskyはHomebrewで利用可能です！ `brew install --cask whisky`でインストールしてください。

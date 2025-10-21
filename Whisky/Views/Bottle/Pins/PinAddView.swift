@@ -22,6 +22,8 @@ import WhiskyKit
 struct PinAddView: View {
     let bottle: Bottle
     @State private var showingSheet = false
+    @State private var isHovered = false
+    @State private var isPressed = false
 
     var body: some View {
         VStack {
@@ -41,6 +43,27 @@ struct PinAddView: View {
         }
         .frame(width: 90, height: 90)
         .padding(10)
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.regularMaterial)
+                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+        }
+        .scaleEffect(isPressed ? 0.98 : 1.0)
+        .opacity(isHovered ? 0.9 : 1.0)
+        .animation(.easeInOut(duration: 0.2), value: isHovered)
+        .animation(.easeInOut(duration: 0.1), value: isPressed)
+        .onHover { hovering in
+            isHovered = hovering
+        }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    isPressed = true
+                }
+                .onEnded { _ in
+                    isPressed = false
+                }
+        )
         .sheet(isPresented: $showingSheet) {
             PinCreationView(bottle: bottle)
         }

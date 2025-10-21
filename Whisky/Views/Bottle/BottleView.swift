@@ -45,6 +45,7 @@ struct BottleView: View {
                     }
                     PinAddView(bottle: bottle)
                 }
+                .whiskyLiquidGlassContainer(spacing: 14)
                 .padding()
                 Form {
                     NavigationLink(value: BottleStage.programs) {
@@ -59,6 +60,7 @@ struct BottleView: View {
                 }
                 .formStyle(.grouped)
                 .scrollDisabled(true)
+                .whiskyLiquidGlass(.detail)
             }
             .bottomBar {
                 HStack {

@@ -4,4 +4,16 @@
    <FileRef
       location = "self:">
    </FileRef>
+   <FileRef
+      location = "group:View+LiquidGlass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:SIGNING_GUIDE.md">
+   </FileRef>
+   <FileRef
+      location = "group:BUILD_FIX_GUIDE.md">
+   </FileRef>
+   <FileRef
+      location = "group:View+LiquidGlass 2.swift">
+   </FileRef>
 </Workspace>

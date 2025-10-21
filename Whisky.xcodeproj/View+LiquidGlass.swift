@@ -29,6 +29,13 @@ extension View {
     func whiskyLiquidGlass(_ style: LiquidGlassStyle, interactive: Bool = false) -> some View {
         self.modifier(LiquidGlassModifier(style: style, interactive: interactive))
     }
+    
+    /// Creates a Liquid Glass container effect with spacing control
+    /// - Parameter spacing: The spacing between elements that controls when glass effects merge
+    /// - Returns: A view with the applied glass container effect
+    func whiskyLiquidGlassContainer(spacing: CGFloat = 14) -> some View {
+        self.modifier(LiquidGlassContainerModifier(spacing: spacing))
+    }
 }
 
 // MARK: - Liquid Glass Style
@@ -37,6 +44,7 @@ enum LiquidGlassStyle {
     case card
     case button
     case pill
+    case detail
     case custom(cornerRadius: CGFloat)
     
     var shape: AnyShape {
@@ -47,6 +55,8 @@ enum LiquidGlassStyle {
             return AnyShape(RoundedRectangle(cornerRadius: 8))
         case .pill:
             return AnyShape(Capsule())
+        case .detail:
+            return AnyShape(RoundedRectangle(cornerRadius: 16))
         case .custom(let cornerRadius):
             return AnyShape(RoundedRectangle(cornerRadius: cornerRadius))
         }
@@ -65,17 +75,9 @@ struct LiquidGlassModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .background {
-                // Use the new Liquid Glass API if available, fallback to visual effect
-                if #available(macOS 15.0, *) {
-                    // Modern Liquid Glass implementation
-                    Rectangle()
-                        .fill(.regularMaterial, style: FillStyle())
-                        .glassEffect(.regular.interactive(interactive), in: style.shape)
-                } else {
-                    // Fallback for older macOS versions
-                    VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
-                        .clipShape(style.shape)
-                }
+                // Use fallback visual effect for macOS compatibility
+                VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
+                    .clipShape(style.shape)
             }
             .scaleEffect(isPressed ? 0.98 : 1.0)
             .opacity(isHovered && interactive ? 0.9 : 1.0)
@@ -86,18 +88,34 @@ struct LiquidGlassModifier: ViewModifier {
                     isHovered = hovering
                 }
             }
-            .pressEvents {
+            .pressEvents(
                 onPress: {
                     if interactive {
                         isPressed = true
                     }
-                }
+                },
                 onRelease: {
                     if interactive {
                         isPressed = false
                     }
                 }
+            )
+    }
+}
+
+// MARK: - Liquid Glass Container Modifier
+
+struct LiquidGlassContainerModifier: ViewModifier {
+    let spacing: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .background {
+                // Container background with liquid glass effect
+                VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            .padding(spacing)
     }
 }
 

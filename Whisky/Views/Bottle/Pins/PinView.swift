@@ -42,8 +42,6 @@ struct PinView: View {
                 }
             }
             .frame(width: 45, height: 45)
-            .scaleEffect(opening ? 2 : 1)
-            .opacity(opening ? 0 : 1)
             Spacer()
             Text(name)
                 .multilineTextAlignment(.center)
@@ -51,6 +49,13 @@ struct PinView: View {
         }
         .frame(width: 90, height: 90)
         .padding(10)
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.regularMaterial)
+                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+        }
+        .scaleEffect(opening ? 2 : 1)
+        .opacity(opening ? 0 : 1)
         .overlay {
             HStack {
                 Spacer()

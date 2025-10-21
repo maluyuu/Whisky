@@ -36,6 +36,7 @@ struct ContentView: View {
     @State private var refreshAnimation: Angle = .degrees(0)
 
     @State private var bottleFilter = ""
+    @Namespace private var glassNamespace
 
     var body: some View {
         NavigationSplitView {
@@ -43,6 +44,7 @@ struct ContentView: View {
         } detail: {
             detail
         }
+        .whiskyLiquidGlassContainer()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -131,7 +133,7 @@ struct ContentView: View {
 
     var sidebar: some View {
         ScrollViewReader { proxy in
-            List(selection: $selected) {
+            let sidebarList = List(selection: $selected) {
                 Section {
                     ForEach(filteredBottles) { bottle in
                         Group {
@@ -155,14 +157,17 @@ struct ContentView: View {
             .animation(.default, value: bottleFilter)
             .listStyle(.sidebar)
             .searchable(text: $bottleFilter, placement: .sidebar)
-            .onChange(of: newlyCreatedBottleURL) { _, url in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    selected = url
-                    withAnimation {
-                        proxy.scrollTo(url, anchor: .center)
+
+            sidebarList
+                .whiskyLiquidGlass(.sidebar, namespace: glassNamespace, id: "sidebar-glass")
+                .onChange(of: newlyCreatedBottleURL) { _, url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        selected = url
+                        withAnimation {
+                            proxy.scrollTo(url, anchor: .center)
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -170,13 +175,15 @@ struct ContentView: View {
     var detail: some View {
         if let bottle = selected {
             if let bottle = bottleVM.bottles.first(where: { $0.url == bottle }) {
-                BottleView(bottle: bottle)
+                let bottleView = BottleView(bottle: bottle)
                     .disabled(bottle.inFlight)
                     .id(bottle.url)
+                bottleView
+                    .whiskyLiquidGlass(.detail, namespace: glassNamespace, id: bottle.url)
             }
         } else {
             if (bottleVM.bottles.isEmpty || bottleVM.countActive() == 0) && bottlesLoaded {
-                VStack {
+                let emptyState = VStack {
                     Text("main.createFirst")
                     Button {
                         showBottleCreation.toggle()
@@ -190,6 +197,9 @@ struct ContentView: View {
                     .buttonStyle(.borderedProminent)
                     .tint(.accentColor)
                 }
+                emptyState
+                    .padding()
+                    .whiskyLiquidGlass(.detail, namespace: glassNamespace, id: "empty-detail", interactive: true)
             }
         }
     }
